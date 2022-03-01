@@ -10,7 +10,7 @@ import {OkPacket, RowDataPacket} from "mysql2";
 // Kun viiteavaimia ei muihin tauluihin ole, <OkPacket> ei olisi valttamaton
 export const create = (person: Person, callback: Function) => {
     const queryString = "INSERT INTO Persons (ID, FirstName, LastName, Age) VALUES (?, ?, ?, ?)"
-
+   // console.log("adfg");
     db.query(
         queryString,
         [person.id, person.firstname, person.lastname, person.age],
@@ -24,19 +24,19 @@ export const create = (person: Person, callback: Function) => {
 };
 
 export const findOne = (id: number, callback: Function) => {
-    const queryString = "SELECT * FROM Persons WHERE ID=?"
+    const queryString = `SELECT * FROM Persons WHERE ID=?`
 
     db.query(queryString, id, (err,result) => {
         if (err) {callback(err)}
 
         const row = (<RowDataPacket> result)[0];
-        const person: Person = {
+        const ukko: Person = {
             id: row.id,
             firstname: row.firstname,
             lastname: row.lastname,
             age: row.age
         }
-        callback(null, person);
+        callback(null, ukko);
     });
 }
 

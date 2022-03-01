@@ -8,6 +8,7 @@ const db_1 = require("../db");
 // Kun viiteavaimia ei muihin tauluihin ole, <OkPacket> ei olisi valttamaton
 const create = (person, callback) => {
     const queryString = "INSERT INTO Persons (ID, FirstName, LastName, Age) VALUES (?, ?, ?, ?)";
+    // console.log("adfg");
     db_1.db.query(queryString, [person.id, person.firstname, person.lastname, person.age], (err, result) => {
         if (err) {
             callback(err);
@@ -18,7 +19,7 @@ const create = (person, callback) => {
 };
 exports.create = create;
 const findOne = (id, callback) => {
-    const queryString = "SELECT * FROM Persons WHERE ID=?";
+    const queryString = `SELECT * FROM Persons WHERE ID=?`;
     db_1.db.query(queryString, id, (err, result) => {
         if (err) {
             callback(err);

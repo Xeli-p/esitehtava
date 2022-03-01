@@ -34,7 +34,7 @@ const personRoutes_1 = require("./routes/personRoutes");
 const app = (0, express_1.default)();
 dotenv.config();
 app.use(bodyParser.json());
-app.use("/persons", personRoutes_1.personRouter);
-app.listen(process.env.PORT, () => {
+app.use("/", personRoutes_1.personRouter);
+app.listen(3000, "127.0.0.1", () => {
     console.log("Node server started running");
 });

@@ -6,7 +6,7 @@ const personRouter = express.Router();
 // Datanhankintalogiikka hoidetaan models-puolella, taalla ei tarvitse
 // muutakuin passata data funktioilla clientsidelle.
 
-personRouter.get("/", async (req: Request, res: Response) => {
+personRouter.get(":/", async (req: Request, res: Response) => {
     personModel.findAll((err: Error, persons: Person[]) => {
         if (err) {
             return res.status(500).json({"errorMessage": err.message});
@@ -15,7 +15,7 @@ personRouter.get("/", async (req: Request, res: Response) => {
     });
 });
 
-personRouter.post("/", async (req: Request, res: Response) => {
+personRouter.post("/:id", async (req: Request, res: Response) => {
     const newPerson: Person = req.body;
     personModel.create(newPerson, (err: Error, ID: number) => {
         if (err) {
@@ -26,13 +26,13 @@ personRouter.post("/", async (req: Request, res: Response) => {
     });
 });
 
-personRouter.get("/:id", async (req: Request, res: Response) => {
+personRouter.get("./", async (req: Request, res: Response) => {
     const personId: number = Number(req.params.id);
-    personModel.findOne(personId, (err: Error, person: Person) => {
+    personModel.findOne(personId, (err: Error, ukko: Person) => {
         if(err) {
             return res.status(500).json({"message": err.message});
         }
-        res.status(200).json({"data": person});
+        res.status(200).json({"data": ukko});
     })
 });
 

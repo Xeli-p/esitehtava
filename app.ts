@@ -14,8 +14,8 @@ const app = express();
 dotenv.config();
 
 app.use(bodyParser.json());
-app.use("/persons", personRouter);
+app.use("/", personRouter);
 
-app.listen(process.env.PORT, () => {
+app.listen(3306, "127.0.0.1",  () => {
     console.log("Node server started running");
 });
